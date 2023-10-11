@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const fs = require('fs');
 const validator = require('validator');
 
 const blogSchema = new mongoose.Schema({
@@ -28,12 +27,10 @@ const blogSchema = new mongoose.Schema({
     toObject: {virtuals: true}
 })
 
-// Executed before the document is saved in db before save or create method, but not in case of insertMany or findByUpdate etc. document middleware
-// any number of pre or post middlewares can be called
-blogSchema.pre('save',function(next){
-    this.createdBy = 'RUBBYMISHRA';
-    next()
-})
+// blogSchema.pre('save',function(next){
+//     this.createdBy = 'RUBBYMISHRA';
+//     next()
+// })
 
 const Blog = mongoose.model('Blog', blogSchema);
 

@@ -30,6 +30,7 @@ exports.getAllBlogs = async (req,res) => {
 
 exports.createBlogs = async (req,res)=> {
     try{
+        req.body.createdBy = req.user.user_id;
         const blog = await Blog.create(req.body)
 
         res.status(201).json({

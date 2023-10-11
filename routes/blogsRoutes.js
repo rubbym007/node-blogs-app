@@ -1,18 +1,16 @@
 const express = require('express');
 const blogsController = require('./../controllers/blogsController')
+const auth = require("../middleware/auth")
 
 const router = express.Router();
 
-// This middleware will be executed only fo rrequests with param id
-// router.param('id', moviesController.checkId);
-
 router.route('/')
-    .get(blogsController.getAllBlogs)
-    .post(blogsController.createBlogs)
+    .get(auth, blogsController.getAllBlogs)
+    .post(auth, blogsController.createBlogs)
 
 router.route('/:id')
-    .get(blogsController.getBlog)
-    .patch(blogsController.updateBlog)
-    .delete(blogsController.deleteBlog)
+    .get(auth, blogsController.getBlog)
+    .patch(auth, blogsController.updateBlog)
+    .delete(auth, blogsController.deleteBlog)
 
 module.exports = router;
